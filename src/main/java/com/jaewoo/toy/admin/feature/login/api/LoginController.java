@@ -28,8 +28,8 @@ public class LoginController {
             notes = "ID/PW를 받고 사용자 로그인 처리를 해준다."
     )
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<User> login(@RequestBody @Valid UserDto.LoginRequest request) {
-        User user = userService.checkLoginAuthentication(request);
+    public ResponseEntity<UserDto.LoginResponse> login(@RequestBody @Valid UserDto.LoginRequest request) {
+        UserDto.LoginResponse user = userService.login(request);
         return ResponseEntity.ok(user);
     }
 }

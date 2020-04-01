@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -14,7 +15,17 @@ public class UserService {
     @Autowired
     UserRepoistory userRepoistory;
 
-    public User checkLoginAuthentication(UserDto.LoginRequest request) {
-        return userRepoistory.getUser(request.getLoginId(), request.getPassword()).orElseThrow(() -> new NoSuchElementException());
+    public UserDto.LoginResponse login(UserDto.LoginRequest request) {
+        User findUser = userRepoistory.getUserByLoginId(request.getLoginId()).orElseThrow(() -> new NoSuchElementException());
+
+        if (!findUser.getPassword().equals(request.getPassword())) {
+            throw new NoSuchElementException("Password 불일치");
+        }
+
+        return new UserDto.LoginResponse(findUser.getToken());
+    }
+
+    public Optional<User> findByLoginId(String loginId) {
+        return userRepoistory.getUserByLoginId(loginId);
     }
 }
