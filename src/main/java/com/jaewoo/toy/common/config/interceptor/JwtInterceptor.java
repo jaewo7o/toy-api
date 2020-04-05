@@ -3,7 +3,7 @@ package com.jaewoo.toy.common.config.interceptor;
 import com.google.common.base.Preconditions;
 import com.jaewoo.toy.biz.user.entity.User;
 import com.jaewoo.toy.biz.user.service.UserService;
-import com.jaewoo.toy.biz.user.util.JwtUtil;
+import com.jaewoo.toy.common.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class JwtInterceptor implements HandlerInterceptor {
+
+    private final String HEADER_AUTH = "access-token";
+
     @Autowired
-    private JwtUtil jwtUtil;
+    private JwtService jwtService;
 
     @Autowired
     private UserService userService;
@@ -21,16 +24,11 @@ public class JwtInterceptor implements HandlerInterceptor {
         String loginId = request.getHeader("loginId");
         User user = userService.findByLoginId(loginId).get();
 
-        String givenToken = request.getHeader("access-token");
-        verifyToken(givenToken, user.getToken());
-
-        return true;
+        String token = request.getHeader(HEADER_AUTH);
+        if (jwtService.isUsable(token)) {
+            return true;
+        } else {
+            return false;
+        }
     }
-
-    private void verifyToken(String givenToken, String token) {
-        Preconditions.checkArgument(!givenToken.equals(token), "Parameter Unmatch");
-
-        jwtUtil.verifyToken(givenToken);
-    }
-
 }

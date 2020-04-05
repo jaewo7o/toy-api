@@ -1,10 +1,9 @@
 package com.jaewoo.toy.biz.user.repository;
 
 import com.jaewoo.toy.biz.user.entity.User;
-import com.jaewoo.toy.biz.user.util.JwtUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -14,15 +13,12 @@ public class UserRepoistory {
 
     private List<User> users;
 
-    @Autowired
-    private JwtUtil jwtUtil;
-
-    UserRepoistory() {
+    @PostConstruct
+    private void initialSetting() {
         users = new ArrayList<>();
-        users.add(new User(1L, "Jaewoo", "jaewo7o@naver.com", "1234", jwtUtil.createToken()));
-        users.add(new User(2L, "Channel", "chanel0901@naver.com", "1234", jwtUtil.createToken()));
+        users.add(new User(1L, "Jaewoo", "jaewo7o@naver.com", "1234"));
+        users.add(new User(2L, "Channel", "chanel0901@naver.com", "1234"));
     }
-
 
     public Optional<User> getUserByLoginId(String loginId) {
         Optional<User> selectUser = Optional.empty();
