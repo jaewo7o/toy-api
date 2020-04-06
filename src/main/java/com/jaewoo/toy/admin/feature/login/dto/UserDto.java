@@ -15,6 +15,8 @@ public class UserDto {
         private String password;
     }
 
+    @Getter
+    @Setter
     public static class LoginResponse {
         private String token;
         public LoginResponse(String token) {
