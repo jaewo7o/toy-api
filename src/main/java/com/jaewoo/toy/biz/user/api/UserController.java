@@ -1,6 +1,6 @@
 package com.jaewoo.toy.biz.user.api;
 
-import com.jaewoo.toy.admin.feature.login.dto.UserDto;
+import com.jaewoo.toy.biz.user.entity.UserDto;
 import com.jaewoo.toy.biz.user.service.UserService;
 import com.jaewoo.toy.common.consts.SystemConst;
 import io.swagger.annotations.Api;
@@ -8,10 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -29,9 +26,15 @@ public class UserController {
             value = "사용자 정보조회",
             notes = "현재 사용자 정보를 조회한다."
     )
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<UserDto.LoginResponse> login(@RequestBody @Valid UserDto.LoginRequest request) {
         UserDto.LoginResponse user = userService.login(request);
+        return ResponseEntity.ok(user);
+    }
+
+    @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
+    public ResponseEntity<UserDto.UserResponse> getUser(@PathVariable String userId) {
+        UserDto.UserResponse user = userService.findByUserId(userId);
         return ResponseEntity.ok(user);
     }
 }

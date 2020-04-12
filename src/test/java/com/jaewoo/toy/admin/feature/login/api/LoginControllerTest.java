@@ -1,7 +1,7 @@
 package com.jaewoo.toy.admin.feature.login.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jaewoo.toy.admin.feature.login.dto.UserDto;
+import com.jaewoo.toy.biz.user.entity.UserDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

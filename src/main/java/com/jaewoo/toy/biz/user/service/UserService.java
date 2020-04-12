@@ -1,7 +1,8 @@
 package com.jaewoo.toy.biz.user.service;
 
-import com.jaewoo.toy.admin.feature.login.dto.UserDto;
+import com.jaewoo.toy.biz.user.entity.UserDto;
 import com.jaewoo.toy.biz.user.entity.User;
+import com.jaewoo.toy.biz.user.entity.UserMapper;
 import com.jaewoo.toy.biz.user.repository.UserRepoistory;
 import com.jaewoo.toy.common.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +34,10 @@ public class UserService {
 
     public Optional<User> findByLoginId(String loginId) {
         return userRepoistory.getUserByLoginId(loginId);
+    }
+
+    public UserDto.UserResponse findByUserId(String userId) {
+        User findUser = userRepoistory.getUserByUserId(userId).orElseThrow(() -> new NoSuchElementException());
+        return UserMapper.INSTANCE.toUserResponse(findUser);
     }
 }

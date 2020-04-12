@@ -1,10 +1,8 @@
 package com.jaewoo.toy.admin.feature.login.api;
 
-import com.jaewoo.toy.admin.feature.login.dto.UserDto;
-import com.jaewoo.toy.biz.user.entity.User;
+import com.jaewoo.toy.biz.user.entity.UserDto;
 import com.jaewoo.toy.biz.user.service.UserService;
 import com.jaewoo.toy.common.consts.SystemConst;
-import com.jaewoo.toy.common.service.JwtService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @Slf4j

@@ -32,4 +32,18 @@ public class UserRepoistory {
 
         return selectUser;
     }
+
+    public Optional<User> getUserByUserId(String userId) {
+        Optional<User> selectUser = Optional.empty();
+
+        Long id = Long.valueOf(userId);
+        for (User user : users) {
+            if (user.getId().equals(id)) {
+                selectUser = Optional.of(user);
+                break;
+            }
+        }
+
+        return selectUser;
+    }
 }

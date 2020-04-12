@@ -1,4 +1,4 @@
-package com.jaewoo.toy.admin.feature.login.dto;
+package com.jaewoo.toy.biz.user.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -22,5 +22,13 @@ public class UserDto {
         public LoginResponse(String token) {
             this.token = token;
         }
+    }
+
+    @Getter
+    @Setter
+    public static class UserResponse {
+        private String id;
+        private String name;
+        private String loginId;
     }
 }
