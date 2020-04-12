@@ -22,16 +22,10 @@ public class UserController {
     UserService userService;
 
     @ApiOperation(
-            httpMethod = "POST",
+            httpMethod = "GET",
             value = "사용자 정보조회",
             notes = "현재 사용자 정보를 조회한다."
     )
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<UserDto.LoginResponse> login(@RequestBody @Valid UserDto.LoginRequest request) {
-        UserDto.LoginResponse user = userService.login(request);
-        return ResponseEntity.ok(user);
-    }
-
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
     public ResponseEntity<UserDto.UserResponse> getUser(@PathVariable String userId) {
         UserDto.UserResponse user = userService.findByUserId(userId);

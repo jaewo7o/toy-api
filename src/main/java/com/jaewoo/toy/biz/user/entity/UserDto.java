@@ -1,5 +1,6 @@
 package com.jaewoo.toy.biz.user.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,11 +18,10 @@ public class UserDto {
 
     @Getter
     @Setter
+    @AllArgsConstructor
     public static class LoginResponse {
         private String token;
-        public LoginResponse(String token) {
-            this.token = token;
-        }
+        private String userId;
     }
 
     @Getter

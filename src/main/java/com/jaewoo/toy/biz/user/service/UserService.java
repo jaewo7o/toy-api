@@ -29,7 +29,7 @@ public class UserService {
 
         String token = jwtService.create(findUser.getLoginId(), findUser, "user");
 
-        return new UserDto.LoginResponse(token);
+        return new UserDto.LoginResponse(token, findUser.getId().toString());
     }
 
     public Optional<User> findByLoginId(String loginId) {
