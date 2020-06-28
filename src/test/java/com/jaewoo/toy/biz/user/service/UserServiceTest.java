@@ -1,6 +1,6 @@
 package com.jaewoo.toy.biz.user.service;
 
-import com.jaewoo.toy.biz.user.entity.UserDto;
+import com.jaewoo.toy.biz.user.domain.entity.User;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,12 +19,12 @@ public class UserServiceTest {
     @Test
     public void findByUserId() {
         // 1. given
-        String userId = "1";
+        Long id = Long.valueOf(1l);
 
         // 2. when
-        final UserDto.UserResponse user = userService.findByUserId(userId);
+        final User user = userService.findById(id);
 
         // 3. decision
-        Assert.assertEquals(userId, user.getId());
+        Assert.assertEquals(id, user.getId());
     }
 }

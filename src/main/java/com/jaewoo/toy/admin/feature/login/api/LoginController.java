@@ -1,6 +1,6 @@
 package com.jaewoo.toy.admin.feature.login.api;
 
-import com.jaewoo.toy.biz.user.entity.UserDto;
+import com.jaewoo.toy.biz.user.domain.dto.UserDto;
 import com.jaewoo.toy.biz.user.service.UserService;
 import com.jaewoo.toy.common.consts.SystemConst;
 import io.swagger.annotations.Api;

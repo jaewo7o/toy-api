@@ -1,13 +1,13 @@
 package com.jaewoo.toy.biz.user.service;
 
-import com.jaewoo.toy.biz.user.entity.UserDto;
-import com.jaewoo.toy.biz.user.entity.User;
-import com.jaewoo.toy.biz.user.entity.UserMapper;
-import com.jaewoo.toy.biz.user.repository.UserRepoistory;
+import com.jaewoo.toy.biz.user.domain.entity.User;
+import com.jaewoo.toy.biz.user.domain.dto.UserDto;
+import com.jaewoo.toy.biz.user.repository.UserRepository;
 import com.jaewoo.toy.common.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -15,13 +15,13 @@ import java.util.Optional;
 public class UserService {
 
     @Autowired
-    UserRepoistory userRepoistory;
+    UserRepository userRepository;
 
     @Autowired
     JwtService jwtService;
 
     public UserDto.LoginResponse login(UserDto.LoginRequest request) {
-        User findUser = userRepoistory.getUserByLoginId(request.getLoginId()).orElseThrow(() -> new NoSuchElementException());
+        User findUser = userRepository.findByLoginId(request.getLoginId()).orElseThrow(() -> new NoSuchElementException());
 
         if (!findUser.getPassword().equals(request.getPassword())) {
             throw new NoSuchElementException("Password 불일치");
@@ -29,15 +29,22 @@ public class UserService {
 
         String token = jwtService.create(findUser.getLoginId(), findUser, "user");
 
-        return new UserDto.LoginResponse(token, findUser.getId().toString());
+        return new UserDto.LoginResponse(token, findUser.getId());
     }
 
     public Optional<User> findByLoginId(String loginId) {
-        return userRepoistory.getUserByLoginId(loginId);
+        return userRepository.findByLoginId(loginId);
     }
 
-    public UserDto.UserResponse findByUserId(String userId) {
-        User findUser = userRepoistory.getUserByUserId(userId).orElseThrow(() -> new NoSuchElementException());
-        return UserMapper.INSTANCE.toUserResponse(findUser);
+    public User findById(Long id) {
+        return userRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
+    }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    public User save(User user) {
+        return userRepository.save(user);
     }
 }

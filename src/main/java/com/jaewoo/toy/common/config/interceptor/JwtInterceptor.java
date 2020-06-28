@@ -1,7 +1,6 @@
 package com.jaewoo.toy.common.config.interceptor;
 
-import com.google.common.base.Preconditions;
-import com.jaewoo.toy.biz.user.entity.User;
+import com.jaewoo.toy.biz.user.domain.entity.User;
 import com.jaewoo.toy.biz.user.service.UserService;
 import com.jaewoo.toy.common.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;

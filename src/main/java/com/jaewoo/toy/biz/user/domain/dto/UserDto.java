@@ -1,4 +1,4 @@
-package com.jaewoo.toy.biz.user.entity;
+package com.jaewoo.toy.biz.user.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +21,7 @@ public class UserDto {
     @AllArgsConstructor
     public static class LoginResponse {
         private String token;
-        private String userId;
+        private long id;
     }
 
     @Getter
