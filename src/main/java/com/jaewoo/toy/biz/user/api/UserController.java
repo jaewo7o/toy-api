@@ -19,7 +19,7 @@ import java.util.List;
 @Slf4j
 @Api(value = "login")
 @RestController
-@RequestMapping(SystemConst.API_URL + "/users")
+@RequestMapping(SystemConst.API_URL)
 public class UserController {
 
     @Autowired
@@ -28,7 +28,7 @@ public class UserController {
     @Autowired
     UserMapper mapper;
 
-    @GetMapping("")
+    @GetMapping("/users")
     public List<User> getAllUsers() {
         return userService.findAll();
     }
@@ -38,13 +38,13 @@ public class UserController {
             value = "사용자 정보조회",
             notes = "현재 사용자 정보를 조회한다."
     )
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
     public ResponseEntity<UserDto.UserResponse> getUser(@PathVariable @ApiParam(required = true, value = "user id", example = "1") Long id) {
         User findUser = userService.findById(id);
         return ResponseEntity.ok().body(mapper.toUserResponse(findUser));
     }
 
-    @PostMapping("")
+    @PostMapping("/users")
     public User createUser(@Valid @RequestBody User user) {
         return userService.save(user);
     }
