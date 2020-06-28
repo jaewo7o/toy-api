@@ -27,6 +27,9 @@ public class User extends Auditable<String> {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "name", nullable = false)
+    private String name;
+
     @Column(name = "first_name", nullable = false)
     private String firstName;
 

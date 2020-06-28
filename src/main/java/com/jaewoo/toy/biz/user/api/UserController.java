@@ -39,7 +39,7 @@ public class UserController {
             notes = "현재 사용자 정보를 조회한다."
     )
     @GetMapping(value = "/users/{id}")
-    public ResponseEntity<UserDto.UserResponse> getUser(@PathVariable @ApiParam(required = true, value = "user id", example = "1") Long id) {
+    public ResponseEntity<UserDto.UserResponse> getUser(@PathVariable @ApiParam(required = true, value = "user id", example = "1L") Long id) {
         User findUser = userService.findById(id);
         return ResponseEntity.ok().body(mapper.toUserResponse(findUser));
     }
