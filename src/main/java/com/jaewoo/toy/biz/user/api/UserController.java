@@ -38,7 +38,7 @@ public class UserController {
             value = "사용자 정보조회",
             notes = "현재 사용자 정보를 조회한다."
     )
-    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/users/{id}")
     public ResponseEntity<UserDto.UserResponse> getUser(@PathVariable @ApiParam(required = true, value = "user id", example = "1") Long id) {
         User findUser = userService.findById(id);
         return ResponseEntity.ok().body(mapper.toUserResponse(findUser));
