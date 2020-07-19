@@ -1,5 +1,6 @@
 package com.jaewoo.toy.biz.user.service;
 
+import com.jaewoo.toy.biz.user.domain.UserMapper;
 import com.jaewoo.toy.biz.user.domain.entity.User;
 import com.jaewoo.toy.biz.user.domain.dto.UserDto;
 import com.jaewoo.toy.biz.user.repository.UserRepository;
@@ -16,6 +17,9 @@ public class UserService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    UserMapper userMapper;
 
     @Autowired
     JwtService jwtService;
@@ -44,7 +48,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User save(User user) {
+    public User save(UserDto.CreateRequest createRequest) {
+        User user = userMapper.toEntity(createRequest);
         return userRepository.save(user);
     }
 }

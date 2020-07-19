@@ -6,5 +6,9 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
+
+    User toEntity(UserDto.CreateRequest createRequest);
+
+
     UserDto.UserResponse toUserResponse(User user);
 }

@@ -18,6 +18,21 @@ public class UserDto {
 
     @Getter
     @Setter
+    public static class CreateRequest {
+        @NotNull
+        private String loginId;
+        @NotNull
+        private String password;
+
+        private String name;
+
+        private String firstName;
+
+        private String lastName;
+    }
+
+    @Getter
+    @Setter
     @AllArgsConstructor
     public static class LoginResponse {
         private String token;

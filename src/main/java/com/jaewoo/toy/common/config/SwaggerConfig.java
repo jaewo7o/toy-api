@@ -20,11 +20,11 @@ public class SwaggerConfig {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
+                        .useDefaultResponseMessages(false)
                         .apiInfo(apiInfo())
                         .securitySchemes(Collections.singletonList(apiKey()))
                         .select()
-                        .paths(PathSelectors.any())
-                        .apis(RequestHandlerSelectors.any())
+                        .paths(PathSelectors.ant("/api/**/*"))
                         .build();
     }
 

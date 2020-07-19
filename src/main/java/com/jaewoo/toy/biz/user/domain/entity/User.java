@@ -4,6 +4,7 @@ package com.jaewoo.toy.biz.user.domain.entity;
 import com.jaewoo.toy.common.jpa.Auditable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -11,7 +12,7 @@ import javax.persistence.*;
 
 @Setter
 @Getter
-@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "users")
 @EntityListeners(AuditingEntityListener.class)
