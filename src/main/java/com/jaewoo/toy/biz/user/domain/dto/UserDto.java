@@ -46,4 +46,11 @@ public class UserDto {
         private String name;
         private String loginId;
     }
+
+    @Setter
+    @Getter
+    public static class UpdateRequest {
+        private long id;
+        private String emailAddress;
+    }
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jaewoo.toy.biz.user.repository.UserDao">
+
+    <update id="updateUser" parameterType="com.jaewoo.toy.biz.user.domain.dto.UserDto$UpdateRequest">
+        UPDATE users T1
+           SET T1.email_address = #{emailAddress}
+         WHERE 1 = 1
+           AND T1.id = #{id}
+    </update>
+</mapper>

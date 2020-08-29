@@ -16,10 +16,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users")
 @EntityListeners(AuditingEntityListener.class)
-public class User extends Auditable<String> {
+public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "login_id", nullable = false)
@@ -38,5 +37,5 @@ public class User extends Auditable<String> {
     private String lastName;
 
     @Column(name = "email_address", nullable = false)
-    private String emailId;
+    private String emailAddress;
 }
