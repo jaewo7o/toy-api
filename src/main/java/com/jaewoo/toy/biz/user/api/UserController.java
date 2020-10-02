@@ -2,7 +2,7 @@ package com.jaewoo.toy.biz.user.api;
 
 import com.jaewoo.toy.biz.user.domain.entity.User;
 import com.jaewoo.toy.biz.user.domain.dto.UserDto;
-import com.jaewoo.toy.biz.user.domain.UserMapper;
+import com.jaewoo.toy.biz.user.domain.mapper.UserMapper;
 import com.jaewoo.toy.biz.user.service.UserService;
 import com.jaewoo.toy.common.consts.SystemConst;
 import io.swagger.annotations.Api;
@@ -46,6 +46,6 @@ public class UserController {
 
     @PostMapping("/users")
     public User createUser(@Valid @RequestBody UserDto.CreateRequest createRequest) {
-        return userService.save(createRequest);
+        return userService.createUser(createRequest);
     }
 }

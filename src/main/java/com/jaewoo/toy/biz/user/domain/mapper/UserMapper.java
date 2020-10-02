@@ -1,4 +1,4 @@
-package com.jaewoo.toy.biz.user.domain;
+package com.jaewoo.toy.biz.user.domain.mapper;
 
 import com.jaewoo.toy.biz.user.domain.dto.UserDto;
 import com.jaewoo.toy.biz.user.domain.entity.User;
@@ -7,7 +7,7 @@ import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
-    User toEntity(UserDto.CreateRequest createRequest);
-    void toEntity2(UserDto.UpdateRequest updateRequest, @MappingTarget User user);
+    User toEntityForCreate(UserDto.CreateRequest createRequest);
+    void toEntityForUpdate(UserDto.UpdateRequest updateRequest, @MappingTarget User user);
     UserDto.UserResponse toUserResponse(User user);
 }

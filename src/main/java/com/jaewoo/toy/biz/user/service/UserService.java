@@ -1,6 +1,6 @@
 package com.jaewoo.toy.biz.user.service;
 
-import com.jaewoo.toy.biz.user.domain.UserMapper;
+import com.jaewoo.toy.biz.user.domain.mapper.UserMapper;
 import com.jaewoo.toy.biz.user.domain.entity.User;
 import com.jaewoo.toy.biz.user.domain.dto.UserDto;
 import com.jaewoo.toy.biz.user.repository.UserDao;
@@ -46,7 +46,6 @@ public class UserService {
 
     public User findById(Long id) {
         User user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
-        System.out.println("====xxx : " + user.getFirstName());
         return user;
     }
 
@@ -54,26 +53,16 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User save(UserDto.CreateRequest createRequest) {
-        User user = userMapper.toEntity(createRequest);
-
-        user.setId(1L);
+    public User createUser(UserDto.CreateRequest createRequest) {
+        User user = userMapper.toEntityForCreate(createRequest);
         return userRepository.save(user);
     }
 
 
     public void updateUser(UserDto.UpdateRequest updateRequest) throws Exception {
-        System.out.println("===============================>>>");
-        userDao.updateUser(updateRequest);
+        User user = userRepository.findById(updateRequest.getId()).orElseThrow(() -> new NoSuchElementException());
+        userMapper.toEntityForUpdate(updateRequest, user);
 
-        User user = userRepository.findById(updateRequest.getId()).get();
-        System.out.println("User Email : " + user.getEmailAddress());
-
-        userMapper.toEntity2(updateRequest, user);
         userRepository.save(user);
-
-        // if (true) {
-        //   throw new Exception("xxx");
-        //}
     }
 }
