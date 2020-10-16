@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.transaction.Transactional;
 import java.util.NoSuchElementException;
 
 @RunWith(SpringRunner.class)
@@ -29,7 +30,7 @@ class ItemRepositoryTest {
         Book book = new Book();
         book.setName("JPA 프로그래밍 Basic");
         book.setPrice(20000);
-        book.setStockQuantity(10);
+        book.setStockQuantity(12);
         book.setIsbn("2020-1");
         book.setAuthor("Test Author");
 

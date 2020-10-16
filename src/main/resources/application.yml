@@ -19,6 +19,12 @@ spring:
 #    hibernate:
 #        ddl-auto: create
 
+    http:
+        encoding:
+            charset: UTF-8
+            enabled: true
+            force: true
+
 logging:
     level:
         jdbc: OFF
@@ -28,3 +34,4 @@ logging:
         jdbc.resultset: OFF
         jdbc.resultsettable: OFF
         jdbc.connection: OFF
+
