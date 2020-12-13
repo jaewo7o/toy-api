@@ -16,30 +16,29 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 public class LoginControllerTest {
 
-    @Autowired
-    private MockMvc mvc;
-
-    @Autowired
-    private ObjectMapper mapper;
-
-    @Test
-    public void login() throws Exception {
-        UserDto.LoginRequest dto = new UserDto.LoginRequest();
-        dto.setLoginId("jaewo7o@naver.com");
-        dto.setPassword("1234");
-
-        ResultActions result = mvc.perform(post("/api/login/")
-                                            .accept(MediaType.APPLICATION_JSON)
-                                            .contentType(MediaType.APPLICATION_JSON)
-                                            .header("loginId", "jeawoo.jeong")
-                                            .header("access-token", "11111")
-                                            .content(mapper.writeValueAsString(dto)))
-                                        .andExpect(MockMvcResultMatchers.status().isOk())
-                                        .andDo(print());
-    }
+//    @Autowired
+//    private MockMvc mvc;
+//
+//    @Autowired
+//    private ObjectMapper mapper;
+//
+//    @Test
+//    public void login() throws Exception {
+//        UserDto.LoginRequest dto = new UserDto.LoginRequest();
+//        dto.setLoginId("jaewo7o@naver.com");
+//        dto.setPassword("1234");
+//
+//        ResultActions result = mvc.perform(post("/api/login/")
+//                                            .accept(MediaType.APPLICATION_JSON)
+//                                            .contentType(MediaType.APPLICATION_JSON)
+//                                            .header("loginId", "jeawoo.jeong")
+//                                            .header("access-token", "11111")
+//                                            .content(mapper.writeValueAsString(dto)))
+//                                        .andExpect(MockMvcResultMatchers.status().isOk())
+//                                        .andDo(print());
+//    }
 }
