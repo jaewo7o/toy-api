@@ -16,7 +16,7 @@ public class UserSocketController {
 
     // SocketHandler는 1) /receive에서 메시지를 받고, /send로 메시지를 보내줍니다.
     // 정의한 SocketVO를 1) 인자값, 2) 반환값으로 사용합니다.
-    public SocketUserVO SocketHandler(SocketUserVO socketVO) {
+    public SocketUserVO handleSocketMessage(SocketUserVO socketVO) {
         // vo에서 getter로 userName을 가져옵니다.
         String userName = socketVO.getUserName();
         // vo에서 setter로 content를 가져옵니다.
